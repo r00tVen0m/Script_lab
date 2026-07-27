@@ -38,20 +38,16 @@ Write-Host "✅ Successfully granted GenericWrite permission to '$ServiceAccount
 #----------------------------------------------
 # Verify whether svc_jenkins has GenericWrite permissions on the user "oliva"
 
+# التحقق من الصلاحية
 $TargetUser = "matthew.thomas"
 $ServiceAccount = "svc_jenkins"
 
-# Retrieve the target user's Distinguished Name (DN)
 $UserObject = Get-ADUser -Identity $TargetUser
 $UserDN = $UserObject.DistinguishedName
 
-# Retrieve the target user's security descriptor (ACL)
 $ACL = Get-ADObject -Identity $UserDN -Properties ntSecurityDescriptor
 
-# Check if svc_jenkins has GenericWrite permission
+# عرض صلاحيات svc_jenkins على matthew.thomas
 $ACL.ntSecurityDescriptor.Access | Where-Object {
-    $_.IdentityReference -like "*$ServiceAccount*" -and
-    $_.ActiveDirectoryRights -match "GenericWrite"
-} | Format-Table IdentityReference, ActiveDirectoryRights, AccessControlType
-
-# If the command returns an entry, GenericWrite has been successfully granted. ✅
+    $_.IdentityReference -like "*$ServiceAccount*"
+} | Format-Table IdentityReference, ActiveDirectoryRights, AccessControlType -AutoSize
