@@ -1,22 +1,27 @@
 # Import the required module
+# استيراد الوحدة
 Import-Module ActiveDirectory
 
-# Define the accounts
+# تعريف المتغيرات (باستخدام الأسماء الصحيحة من Domain الخاص بك)
 $ServiceAccount = "svc_jenkins"
 $TargetUser = "matthew.thomas"
 
-# Retrieve the target user object
+Write-Host "🚀 بدء منح صلاحية GenericWrite..." -ForegroundColor Cyan
+
+# الحصول على كائنات المستخدمين
 $UserObject = Get-ADUser -Identity $TargetUser
+$ServiceObject = Get-ADUser -Identity $ServiceAccount
 
-# Get the Distinguished Name (DN)
+# الحصول على Distinguished Name
 $UserDN = $UserObject.DistinguishedName
+Write-Host "📌 المستهدف: $UserDN" -ForegroundColor Yellow
 
-# Retrieve the target user's security descriptor
+# الحصول على Security Descriptor الحالي
 $ACL = Get-ADObject -Identity $UserDN -Properties ntSecurityDescriptor
 $SecurityDescriptor = $ACL.ntSecurityDescriptor
 
-# Create a new access rule granting GenericWrite to svc_jenkins
-$AccountSID = (Get-ADUser -Identity $ServiceAccount).SID
+# إنشاء قاعدة صلاحية جديدة
+$AccountSID = $ServiceObject.SID
 $AccessRule = New-Object System.DirectoryServices.ActiveDirectoryAccessRule(
     $AccountSID,
     [System.DirectoryServices.ActiveDirectoryRights]::GenericWrite,
@@ -25,13 +30,13 @@ $AccessRule = New-Object System.DirectoryServices.ActiveDirectoryAccessRule(
     [System.DirectoryServices.ActiveDirectorySecurityInheritance]::None
 )
 
-# Add the access rule to the security descriptor
+# إضافة القاعدة إلى Security Descriptor
 $SecurityDescriptor.AddAccessRule($AccessRule)
 
-# Apply the updated security descriptor to the target user
-Set-ADObject -Identity $UserDN -ntSecurityDescriptor $SecurityDescriptor
+# ✅ تطبيق التغييرات (بالطريقة الصحيحة)
+Set-ADObject -Identity $UserDN -Replace @{ntSecurityDescriptor = $SecurityDescriptor}
 
-Write-Host "✅ Successfully granted GenericWrite permission to '$ServiceAccount' on '$TargetUser'." -ForegroundColor Green
+Write-Host "✅ تم منح صلاحية GenericWrite لـ $ServiceAccount على $TargetUser" -ForegroundColor Green
 
 
 
