@@ -56,3 +56,32 @@ $ACL = Get-ADObject -Identity $UserDN -Properties ntSecurityDescriptor
 $ACL.ntSecurityDescriptor.Access | Where-Object {
     $_.IdentityReference -like "*$ServiceAccount*"
 } | Format-Table IdentityReference, ActiveDirectoryRights, AccessControlType -AutoSize
+
+
+#----------------------
+
+# استيراد الوحدة
+Import-Module ActiveDirectory
+
+# تعريف حساب الخدمة
+$ServiceAccount = "svc_jenkins"
+
+# الحصول على جميع المستخدمين وعرض من لديه صلاحيات
+Get-ADUser -Filter * -Properties ntSecurityDescriptor | ForEach-Object {
+    $User = $_
+    $ACL = Get-ADObject -Identity $_.DistinguishedName -Properties ntSecurityDescriptor -ErrorAction SilentlyContinue
+    
+    if ($ACL -and $ACL.ntSecurityDescriptor) {
+        $Perms = $ACL.ntSecurityDescriptor.Access | Where-Object {
+            $_.IdentityReference -like "*$ServiceAccount*"
+        }
+        
+        if ($Perms) {
+            [PSCustomObject]@{
+                User = $User.Name
+                SamAccountName = $User.SamAccountName
+                Rights = ($Perms.ActiveDirectoryRights -join ", ")
+            }
+        }
+    }
+} | Format-Table User, SamAccountName, Rights -AutoSize
