@@ -1,0 +1,36 @@
+ASTERA\michael.johnson      / Mj#2026!K9xL
+ASTERA\david.brown          / Db#2026!Q4mP
+ASTERA\emily.davis          / Ed#2026!R7vN
+ASTERA\sarah.wilson         / Sw#2026!X2kJ
+ASTERA\jessica.taylor       / Jt#2026!P8sH
+ASTERA\daniel.anderson      / Da#2026!M5qW
+ASTERA\matthew.thomas       / Mt#2026!L3zC
+ASTERA\christopher.moore    / Cm#2026!N6yR
+ASTERA\amanda.white         / Aw#2026!B4uF
+ASTERA\jennifer.martin      / Jm#2026!H8tK
+ASTERA\kevin.harris         / Kh#2026!W1pD
+ASTERA\brian.clark          / Bc#2026!F9rX
+ASTERA\robert.lewis         / Rl#2024!C7nV
+ASTERA\william.walker       / Ww#2026!T5mQ
+ASTERA\james.hall           / Jh#2026!Y8dP
+ASTERA\andrew.allen         / Aa#2026!G2kM
+ASTERA\sophia.king          / Sk#2026!V6xL
+ASTERA\olivia.scott         / Os#2026!J4hN
+ASTERA\ethan.green          / Eg#2026!Z9qR
+
+**Subject:** Mail Server Access
+
+**Subject:** WinRM Access to the MAIL Server
+
+Hi Andrew,
+
+I wanted to let you know that I have enabled **WinRM** access to the **MAIL** server.
+
+Please note that this access is **strictly limited** to monitoring activities on the MAIL server. It does **not** provide administrative privileges or permission to make system changes.
+
+To connect remotely, please use the **MailJEA** PowerShell endpoint, which enforces the restricted permissions assigned to this role.
+
+Let me know if you have any questions.
+
+Best regards,  
+**Brian**
