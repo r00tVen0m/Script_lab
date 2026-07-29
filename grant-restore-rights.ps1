@@ -5,6 +5,8 @@ dsacls "CN=Deleted Objects,DC=astera,DC=cg" /R "ASTERA\svc_recovery"
 dsacls "CN=Deleted Objects,DC=astera,DC=cg" /G "ASTERA\svc_recovery:SDRPWOCCDCLCWSWPRPRC"
 dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /R "ASTERA\Recovery Operators"
 
+
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /R "ASTERA\Recovery Operators"
 ----------------------
 
 dsacls "DC=astera,DC=cg" /G "ASTERA\Recovery Operators:CA;Reanimate Tombstones"
