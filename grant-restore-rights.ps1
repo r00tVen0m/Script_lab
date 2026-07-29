@@ -18,14 +18,13 @@ dsacls "CN=Deleted Objects,DC=astera,DC=cg" /takeownership
 dsacls "CN=Deleted Objects,DC=astera,DC=cg" /G "ASTERA\svc_recovery:LCRPWPCCDCRCLO" /I:T
 
 $DomainDN = (Get-ADDomain).DistinguishedName
-$Acl = Get-Acl "AD:\$DomainDN"
-$Identity = New-Object System.Security.Principal.SecurityIdentifier((Get-ADUser svc_recovery).SID)
-$ReanimateGuid = New-Object Guid "45ec5156-db7e-47bb-b53f-dbeb2d03c40f"
+$DeletedObjectsDN = "CN=Deleted Objects,$DomainDN"
+$Acl = Get-Acl "AD:\$DeletedObjectsDN"
 $Rule = New-Object System.DirectoryServices.ActiveDirectoryAccessRule(
-    $Identity,
-    [System.DirectoryServices.ActiveDirectoryRights]::ExtendedRight,
+    [System.Security.Principal.NTAccount]"svc_recovery",
+    [System.DirectoryServices.ActiveDirectoryRights]::GenericAll,
     [System.Security.AccessControl.AccessControlType]::Allow,
-    $ReanimateGuid
+    [System.DirectoryServices.ActiveDirectorySecurityInheritance]::All
 )
 $Acl.AddAccessRule($Rule)
-Set-Acl "AD:\$DomainDN" $Acl
+Set-Acl "AD:\$DeletedObjectsDN" $Acl
