@@ -22,3 +22,16 @@ dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:W
 dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:RP;user"
 dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:RC"
 dsacls "CN=Deleted Objects,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:SDRPWOCDCLCWSWPRPRC"
+
+
+Take Ownership of the Deleted Objects Container
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /takeownership
+
+Assign Permissions to the Deleted Objects Container
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /g "Recovery_Operators:LCRP"
+
+Assign Write Permissions to the OU or Domain to group which will have permission to restore
+dsacls "DC=astera,DC=cg" /I:T /g "Recovery_Operators:WPCC"
+
+Set restoration rights on the root of the context
+dsacls "DC=astera,DC=cg" /g "Recovery_Operators:ca;Reanimate Tombstones"
