@@ -19,3 +19,4 @@ dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:C
 dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:WP;user"
 dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:RP;user"
 dsacls "OU=DeletedUsers,OU=CORP,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:RC"
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /G "ASTERA\Recovery Operators:SDRPWOCDCLCWSWPRPRC"
