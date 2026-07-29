@@ -33,3 +33,7 @@ try {
 } catch {
     Write-Host "خطأ: $_" -ForegroundColor Red
 }
+
+
+$Acl2 = Get-Acl "AD:\$DomainDN"
+$Acl2.Access | Where-Object { $_.IdentityReference -like "*svc_recovery*" }
