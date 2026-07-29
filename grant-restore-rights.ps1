@@ -1,3 +1,10 @@
+
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /takeownership
+
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /R "ASTERA\svc_recovery"
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /G "ASTERA\svc_recovery:SDRPWOCCDCLCWSWPRPRC"
+
+
 $DomainDN = (Get-ADDomain).DistinguishedName
 $Acl = Get-Acl "AD:\$DomainDN"
 
