@@ -37,3 +37,6 @@ try {
 
 $Acl2 = Get-Acl "AD:\$DomainDN"
 $Acl2.Access | Where-Object { $_.IdentityReference -like "*svc_recovery*" }
+
+
+dsacls "CN=Deleted Objects,DC=astera,DC=cg" /G "ASTERA\svc_recovery:LCRPWPCCDCRCLO" /I:T
