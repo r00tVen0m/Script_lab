@@ -5,9 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Astera Technologies — Company Profile</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --bg: #0F1526;
@@ -30,7 +28,7 @@
     margin:0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Inter', sans-serif;
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -41,7 +39,7 @@
   a{ color: inherit; }
 
   .eyebrow{
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -49,8 +47,9 @@
   }
 
   h1, h2, h3{
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: "Segoe UI Semibold", "Segoe UI", -apple-system, Roboto, Arial, sans-serif;
     font-weight: 600;
+    letter-spacing: -0.01em;
     margin: 0;
     color: var(--ink);
   }
@@ -82,7 +81,7 @@
     display:flex;
     align-items:center;
     gap: 12px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.92rem;
     letter-spacing: 0.04em;
   }
@@ -94,7 +93,7 @@
   header nav{
     display:flex;
     gap: 28px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.78rem;
     color: var(--ink-dim);
   }
@@ -147,7 +146,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .hero-meta div{ font-family:'IBM Plex Mono', monospace; text-align: center; }
+  .hero-meta div{ font-family:Consolas, 'Courier New', monospace; text-align: center; }
   .hero-meta .num{ color: var(--accent); font-size: 0.95rem; }
   .hero-meta .lbl{ color: var(--ink-faint); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
 
@@ -169,7 +168,7 @@
   .network-figure svg{ width: 100%; height: auto; display:block; }
 
   .node-label{
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 12px;
     fill: var(--ink-dim);
     transition: fill .25s ease;
@@ -179,13 +178,13 @@
   .node-group:hover .node-label, .node-group:focus .node-label{ fill: var(--ink); }
   .link-line{ stroke: var(--line); stroke-width: 1; }
   .core-dot{ fill: var(--accent); }
-  .core-label{ font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; fill: var(--accent-soft); }
+  .core-label{ font-family:Consolas, 'Courier New', monospace; font-size: 12px; letter-spacing: 0.08em; fill: var(--accent-soft); }
 
   .node-desc{
     text-align:center;
     margin-top: 30px;
     min-height: 44px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.82rem;
     color: var(--ink-faint);
     transition: color .2s ease;
@@ -214,7 +213,7 @@
     padding: 36px 40px;
   }
   .card .tag{
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -262,7 +261,7 @@
     gap: 12px;
   }
   .future-list span{
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.82rem;
     color: var(--ink-dim);
     border: 1px solid var(--line);
@@ -279,7 +278,7 @@
   .conclusion blockquote{
     margin: 0;
     max-width: 760px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: clamp(1.3rem, 2.6vw, 1.8rem);
@@ -299,7 +298,7 @@
     padding-top: 28px;
   }
   .prepared .role{
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -314,7 +313,7 @@
   footer{
     padding: 26px 0 40px;
     color: var(--ink-faint);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
     font-size: 0.74rem;
   }
 
