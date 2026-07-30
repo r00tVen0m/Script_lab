@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astera Technologies — Company Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1526;
+    --bg-panel: #161D33;
+    --bg-panel-2: #1B2340;
+    --ink: #EDEAE0;
+    --ink-dim: #9AA3BE;
+    --ink-faint: #6B7290;
+    --accent: #C9A227;
+    --accent-soft: #E4C766;
+    --line: rgba(201,162,39,0.22);
+    --line-faint: rgba(154,163,190,0.14);
+    --radius: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--accent); color: #0F1526; }
+
+  a{ color: inherit; }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1, h2, h3{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(15,21,38,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+  }
+  .brand-mark{
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+  }
+  .brand-mark svg{ width:100%; height:100%; display:block; }
+  header nav{
+    display:flex;
+    gap: 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+  }
+  header nav a{ text-decoration:none; transition: color .2s ease; }
+  header nav a:hover, header nav a:focus-visible{ color: var(--accent-soft); }
+  @media (max-width: 720px){ header nav{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    padding: 108px 0 88px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .hero-sky{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity: 0.55;
+  }
+  .hero-content{
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 5.4vw, 4rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin-top: 18px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
+  .hero p.lede{
+    margin-top: 26px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--ink-dim);
+    font-size: 1.06rem;
+  }
+  .hero-meta{
+    margin-top: 44px;
+    display:flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-meta div{ font-family:'IBM Plex Mono', monospace; text-align: center; }
+  .hero-meta .num{ color: var(--accent); font-size: 0.95rem; }
+  .hero-meta .lbl{ color: var(--ink-faint); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+  /* ---------- Network / signature section ---------- */
+  .network{
+    padding: 96px 0 88px;
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .network-head{ max-width: 620px; margin-bottom: 56px; }
+  .network-head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 14px; }
+  .network-head p{ color: var(--ink-dim); margin-top: 16px; }
+
+  .network-figure{
+    position: relative;
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .network-figure svg{ width: 100%; height: auto; display:block; }
+
+  .node-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    fill: var(--ink-dim);
+    transition: fill .25s ease;
+  }
+  .node-dot{ transition: r .25s ease, fill .25s ease; cursor: pointer; }
+  .node-group:hover .node-dot, .node-group:focus .node-dot{ fill: var(--accent-soft); }
+  .node-group:hover .node-label, .node-group:focus .node-label{ fill: var(--ink); }
+  .link-line{ stroke: var(--line); stroke-width: 1; }
+  .core-dot{ fill: var(--accent); }
+  .core-label{ font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; fill: var(--accent-soft); }
+
+  .node-desc{
+    text-align:center;
+    margin-top: 30px;
+    min-height: 44px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    transition: color .2s ease;
+  }
+  .node-desc .active{ color: var(--ink-dim); }
+
+  /* ---------- Sections grid ---------- */
+  .sections{
+    padding: 96px 0;
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .sections-head{ max-width: 560px; margin-bottom: 56px; }
+  .sections-head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 14px; }
+
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line-faint);
+    border: 1px solid var(--line-faint);
+  }
+  @media (max-width: 780px){ .card-grid{ grid-template-columns: 1fr; } }
+
+  .card{
+    background: var(--bg-panel);
+    padding: 36px 40px;
+  }
+  .card .tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card h3{
+    font-size: 1.36rem;
+    margin-top: 12px;
+    margin-bottom: 18px;
+  }
+  .card ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card li{
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    color: var(--ink-dim);
+    font-size: 0.94rem;
+  }
+  .card li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+  .card.wide{ grid-column: 1 / -1; }
+
+  /* ---------- Future objectives strip ---------- */
+  .future{
+    padding: 88px 0;
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .future-head{ max-width: 560px; margin-bottom: 44px; }
+  .future-head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 14px; }
+  .future-list{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .future-list span{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .future-list span:hover{ color: var(--accent-soft); border-color: var(--accent); }
+
+  /* ---------- Conclusion / footer ---------- */
+  .conclusion{
+    padding: 96px 0 60px;
+  }
+  .conclusion blockquote{
+    margin: 0;
+    max-width: 760px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+    line-height: 1.5;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding-left: 28px;
+  }
+  .prepared{
+    margin-top: 64px;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid var(--line-faint);
+    padding-top: 28px;
+  }
+  .prepared .role{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .prepared .name-line{
+    margin-top: 10px;
+    width: 220px;
+    border-bottom: 1px solid var(--line);
+    height: 28px;
+  }
+  footer{
+    padding: 26px 0 40px;
+    color: var(--ink-faint);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.6 9.4 L21 11 L13.6 12.6 L12 20 L10.4 12.6 L3 11 L10.4 9.4 Z" fill="#C9A227"/></svg>
+      </span>
+      ASTERA TECHNOLOGIES
+    </div>
+    <nav>
+      <a href="#network">Coordination</a>
+      <a href="#sections">Operations</a>
+      <a href="#future">Direction</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-sky" aria-hidden="true">
+    <svg width="100%" height="100%" viewBox="0 0 1120 420" preserveAspectRatio="xMidYMid slice">
+      <circle cx="120" cy="60" r="1.4" fill="#C9A227" opacity="0.6"/>
+      <circle cx="260" cy="140" r="1" fill="#9AA3BE" opacity="0.5"/>
+      <circle cx="420" cy="40" r="1.6" fill="#C9A227" opacity="0.4"/>
+      <circle cx="600" cy="180" r="1" fill="#9AA3BE" opacity="0.4"/>
+      <circle cx="760" cy="70" r="1.2" fill="#C9A227" opacity="0.5"/>
+      <circle cx="900" cy="150" r="1" fill="#9AA3BE" opacity="0.4"/>
+      <circle cx="1020" cy="50" r="1.6" fill="#C9A227" opacity="0.5"/>
+      <circle cx="340" cy="260" r="1" fill="#9AA3BE" opacity="0.3"/>
+      <circle cx="980" cy="300" r="1.2" fill="#C9A227" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="wrap hero-content">
+    <span class="eyebrow">Company Profile</span>
+    <h1>A structured way of working, <em>held together on purpose.</em></h1>
+    <p class="lede">Astera Technologies continuously improves its internal processes, operational efficiency, and technical capabilities through structured tasks and collaborative work across departments — a working environment built to stay productive as it grows.</p>
+    <div class="hero-meta">
+      <div><div class="num">05</div><div class="lbl">Focus Areas</div></div>
+      <div><div class="num">01</div><div class="lbl">Shared Direction</div></div>
+      <div><div class="num">∞</div><div class="lbl">Continuous Improvement</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="network" id="network">
+  <div class="wrap">
+    <div class="network-head">
+      <span class="eyebrow">How the work connects</span>
+      <h2>Every department, one center of gravity.</h2>
+      <p>None of these areas operate in isolation. Operations, administration, improvement, collaboration, and direction all route through the same core — hover or focus a point to see what it holds.</p>
+    </div>
+
+    <div class="network-figure">
+      <svg viewBox="0 0 880 460" role="img" aria-label="Diagram connecting five departmental focus areas to a shared center">
+        <!-- links -->
+        <line class="link-line" x1="440" y1="230" x2="150" y2="90"/>
+        <line class="link-line" x1="440" y1="230" x2="730" y2="90"/>
+        <line class="link-line" x1="440" y1="230" x2="120" y2="330"/>
+        <line class="link-line" x1="440" y1="230" x2="440" y2="410"/>
+        <line class="link-line" x1="440" y1="230" x2="760" y2="330"/>
+
+        <!-- core -->
+        <circle class="core-dot" cx="440" cy="230" r="5"/>
+        <text class="core-label" x="440" y="216" text-anchor="middle">ASTERA</text>
+
+        <!-- node: Operational -->
+        <g class="node-group" tabindex="0" data-desc="Planning, monitoring, and resourcing the day-to-day work.">
+          <circle class="node-dot" cx="150" cy="90" r="4" fill="#9AA3BE"/>
+          <text class="node-label" x="150" y="72" text-anchor="middle">OPERATIONAL</text>
+        </g>
+
+        <!-- node: Administrative -->
+        <g class="node-group" tabindex="0" data-desc="Meetings, reporting, and priorities kept on schedule.">
+          <circle class="node-dot" cx="730" cy="90" r="4" fill="#9AA3BE"/>
+          <text class="node-label" x="730" y="72" text-anchor="middle">ADMINISTRATIVE</text>
+        </g>
+
+        <!-- node: Improvement -->
+        <g class="node-group" tabindex="0" data-desc="Evaluating, optimizing, and rolling out better solutions.">
+          <circle class="node-dot" cx="120" cy="330" r="4" fill="#9AA3BE"/>
+          <text class="node-label" x="120" y="356" text-anchor="middle">IMPROVEMENT</text>
+        </g>
+
+        <!-- node: Collaboration -->
+        <g class="node-group" tabindex="0" data-desc="Clear communication and shared responsibility between teams.">
+          <circle class="node-dot" cx="440" cy="410" r="4" fill="#9AA3BE"/>
+          <text class="node-label" x="440" y="434" text-anchor="middle">COLLABORATION</text>
+        </g>
+
+        <!-- node: Future -->
+        <g class="node-group" tabindex="0" data-desc="Efficiency, quality, and sustainable practices ahead.">
+          <circle class="node-dot" cx="760" cy="330" r="4" fill="#9AA3BE"/>
+          <text class="node-label" x="760" y="356" text-anchor="middle">DIRECTION</text>
+        </g>
+      </svg>
+      <div class="node-desc" id="nodeDesc">Hover or focus a point above to read what it covers.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sections" id="sections">
+  <div class="wrap">
+    <div class="sections-head">
+      <span class="eyebrow">The work itself</span>
+      <h2>Four areas that keep the company running.</h2>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag">Operational Tasks</span>
+        <h3>Running the daily work</h3>
+        <ul>
+          <li>Planning and coordinating internal projects</li>
+          <li>Monitoring operational activities</li>
+          <li>Managing technical resources</li>
+          <li>Maintaining documentation and internal procedures</li>
+          <li>Supporting collaboration between teams</li>
+          <li>Tracking progress and reporting outcomes</li>
+          <li>Improving workflow efficiency</li>
+          <li>Reviewing and updating existing processes</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">Administrative Activities</span>
+        <h3>Keeping business moving</h3>
+        <ul>
+          <li>Organizing meetings and follow-up actions</li>
+          <li>Preparing reports and internal communications</li>
+          <li>Managing schedules and priorities</li>
+          <li>Reviewing task completion status</li>
+          <li>Coordinating between departments</li>
+          <li>Supporting decision-making processes</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">Continuous Improvement</span>
+        <h3>Getting better on purpose</h3>
+        <ul>
+          <li>Evaluating current procedures</li>
+          <li>Identifying opportunities for optimization</li>
+          <li>Implementing new ideas and solutions</li>
+          <li>Enhancing productivity</li>
+          <li>Promoting knowledge sharing among employees</li>
+          <li>Encouraging innovation and professional development</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">Team Collaboration</span>
+        <h3>Work that depends on each other</h3>
+        <ul>
+          <li>Clear communication</li>
+          <li>Knowledge exchange</li>
+          <li>Shared responsibilities</li>
+          <li>Efficient coordination</li>
+          <li>Mutual support between teams</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="future" id="future">
+  <div class="wrap">
+    <div class="future-head">
+      <span class="eyebrow">Where this is going</span>
+      <h2>Future objectives</h2>
+    </div>
+    <div class="future-list">
+      <span>Improve operational efficiency</span>
+      <span>Strengthen internal processes</span>
+      <span>Increase productivity</span>
+      <span>Enhance service quality</span>
+      <span>Support innovation</span>
+      <span>Develop sustainable working practices</span>
+    </div>
+  </div>
+</section>
+
+<section class="conclusion">
+  <div class="wrap">
+    <blockquote>Through organized task management and effective collaboration, Astera Technologies continues to strengthen its operations and achieve its business goals while maintaining high standards of professionalism and efficiency.</blockquote>
+    <div class="prepared">
+      <div>
+        <div class="role">Prepared by</div>
+        <div class="name-line"></div>
+      </div>
+      <div class="role">Astera Technologies — Internal Document</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Astera Technologies. Internal use.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const desc = document.getElementById('nodeDesc');
+  const defaultText = 'Hover or focus a point above to read what it covers.';
+  document.querySelectorAll('.node-group').forEach(function(node){
+    const text = node.getAttribute('data-desc');
+    node.addEventListener('mouseenter', function(){ desc.textContent = text; desc.classList.add('active'); });
+    node.addEventListener('focus', function(){ desc.textContent = text; desc.classList.add('active'); });
+    node.addEventListener('mouseleave', function(){ desc.textContent = defaultText; desc.classList.remove('active'); });
+    node.addEventListener('blur', function(){ desc.textContent = defaultText; desc.classList.remove('active'); });
+  });
+</script>
+
+</body>
+</html>
